@@ -1,0 +1,139 @@
+{
+  "domain": "hardware_semiconductors",
+  "version": "1.0",
+  "agents": [
+    {
+      "id": "wafer_supply_constraint_scan",
+      "hypothesis": "AI chip demand is growing faster than global 300mm wafer production, creating upstream supply pressure.",
+      "search_prompt": "Find recent reports or datasets describing 300mm wafer production capacity, fab utilization, wafer shipment volumes, and wafer supplier backlog or lead times.",
+      "entities_of_interest": [
+        "TSMC",
+        "GlobalWafers",
+        "SUMCO",
+        "Shin-Etsu Chemical"
+      ],
+      "metrics_to_extract": [
+        "300mm wafer monthly output",
+        "fab utilization percentage",
+        "wafer order backlog duration",
+        "capacity expansion announcements",
+        "wafer shipment YoY change"
+      ],
+      "normalization": {
+        "frequency": "monthly",
+        "units": ["wafers_per_month", "percent", "months_backlog"],
+        "derived_signals": [
+          "wafer_supply_growth_rate",
+          "wafer_demand_supply_gap"
+        ]
+      }
+    },
+    {
+      "id": "advanced_packaging_capacity_scan",
+      "hypothesis": "Advanced packaging capacity (CoWoS, chiplets, HBM integration) is the real bottleneck in AI chip production.",
+      "search_prompt": "Search for packaging throughput, CoWoS capacity, packaging backlog, or packaging line expansion announcements related to advanced AI processors.",
+      "entities_of_interest": ["TSMC", "ASE Technology", "Amkor Technology"],
+      "metrics_to_extract": [
+        "CoWoS monthly capacity",
+        "advanced packaging utilization",
+        "packaging backlog duration",
+        "packaging expansion timelines"
+      ],
+      "normalization": {
+        "frequency": "quarterly",
+        "units": ["packages_per_month", "percent", "months_backlog"],
+        "derived_signals": ["ai_packaging_constraint_index"]
+      }
+    },
+    {
+      "id": "hbm_memory_supply_scan",
+      "hypothesis": "High bandwidth memory production is a binding constraint for AI accelerator manufacturing.",
+      "search_prompt": "Search for production volumes, wafer starts, shipment forecasts, and capacity expansion announcements related to HBM memory.",
+      "entities_of_interest": [
+        "SK Hynix",
+        "Samsung Electronics",
+        "Micron Technology"
+      ],
+      "metrics_to_extract": [
+        "HBM wafer starts",
+        "HBM production capacity",
+        "HBM shipment growth",
+        "HBM lead times",
+        "HBM pricing changes"
+      ],
+      "normalization": {
+        "frequency": "quarterly",
+        "units": ["units", "percent", "weeks"],
+        "derived_signals": ["hbm_supply_demand_gap"]
+      }
+    },
+    {
+      "id": "semiconductor_equipment_backlog_scan",
+      "hypothesis": "Fab expansion and technological progression are constrained by lithography and fabrication equipment delivery timelines.",
+      "search_prompt": "Search for backlog sizes, shipment delays, and order growth for semiconductor manufacturing equipment vendors.",
+      "entities_of_interest": ["ASML", "Applied Materials", "Lam Research"],
+      "metrics_to_extract": [
+        "tool backlog value",
+        "lithography delivery time",
+        "new equipment orders",
+        "fab installation timelines"
+      ],
+      "normalization": {
+        "frequency": "quarterly",
+        "units": ["usd", "months"],
+        "derived_signals": ["fab_expansion_pipeline_index"]
+      }
+    },
+    {
+      "id": "fab_power_water_constraints_scan",
+      "hypothesis": "Fab growth is constrained by electricity grid limits and water availability rather than chip demand.",
+      "search_prompt": "Search for reports of semiconductor fab construction delays, energy infrastructure limitations, or water consumption constraints impacting fab operations.",
+      "entities_of_interest": ["Intel", "TSMC", "Samsung Electronics"],
+      "metrics_to_extract": [
+        "fab power requirement MW",
+        "water usage per fab",
+        "construction delay duration",
+        "grid infrastructure expansion"
+      ],
+      "normalization": {
+        "frequency": "event_driven",
+        "units": ["megawatts", "months", "cubic_meters"],
+        "derived_signals": ["fab_infrastructure_constraint_index"]
+      }
+    },
+    {
+      "id": "ai_server_supply_chain_scan",
+      "hypothesis": "AI datacenter growth is constrained by rack-scale hardware supply rather than GPUs alone.",
+      "search_prompt": "Search for lead times, supply shortages, or shipment growth related to AI server racks, networking hardware, and cooling systems.",
+      "entities_of_interest": ["Supermicro", "Broadcom", "Arista Networks"],
+      "metrics_to_extract": [
+        "AI server shipment volume",
+        "networking switch backlog",
+        "rack power density",
+        "cooling infrastructure demand"
+      ],
+      "normalization": {
+        "frequency": "quarterly",
+        "units": ["units", "kilowatts", "percent"],
+        "derived_signals": ["ai_datacenter_buildout_rate"]
+      }
+    },
+    {
+      "id": "abf_substrate_supply_scan",
+      "hypothesis": "ABF substrates and interposers represent a hidden physical constraint on high-performance chip manufacturing.",
+      "search_prompt": "Search for ABF substrate capacity, pricing trends, supply shortages, and lead times affecting advanced processors.",
+      "entities_of_interest": ["Ibiden", "Unimicron", "Nan Ya PCB"],
+      "metrics_to_extract": [
+        "ABF substrate production capacity",
+        "ABF pricing index",
+        "lead time for substrates",
+        "capacity expansion announcements"
+      ],
+      "normalization": {
+        "frequency": "quarterly",
+        "units": ["square_meters", "percent", "weeks"],
+        "derived_signals": ["substrate_supply_constraint_index"]
+      }
+    }
+  ]
+}
