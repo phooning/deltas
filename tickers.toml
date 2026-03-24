@@ -1,0 +1,14 @@
+[tech]
+tickers = ["AAPL", "MSFT", "AMZN", "TSLA"]
+
+[oil]
+tickers = ["XOM", "CVX", "VLO", "MPC", "PSX", "SLB", "HAL", "BKR", "COP", "EOG", "OXY"]
+
+[compute]
+tickers = ["NVDA", "AMD", "TSM", "MU", "ANET", "CSCO", "VRT", "ETN"]
+
+[hyperscalers]
+tickers = ["AMZN", "GOOGL"]
+
+[enterprise]
+tickers = ["CRM", "ORCL", "NOW", "TEAM"]

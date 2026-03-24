@@ -1,5 +1,5 @@
 from typing import Dict, List
-
+import tomllib as toml
 
 class LLMProvider:
     def __init__(self, name: str) -> None:
@@ -19,7 +19,11 @@ class LLMRouter:
 
 def main():
     router = LLMRouter()
-    
+
+    with open("tickers.toml", "rb") as f:
+        tickers = toml.load(f)
+        print(tickers)
+
 
     # TODO: LLM recursion pipeline:
     # Ingestion
