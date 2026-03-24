@@ -1,0 +1,6 @@
+{
+  "oil": ["XOM", "CVX", "VLO", "MPC", "PSX", "SLB", "HAL", "BKR", "COP", "EOG", "OXY"],
+  "compute": ["NVDA", "AMD", "TSM", "MU", "ANET", "CSCO", "VRT", "ETN"],
+  "hyperscalers": ["AMZN", "GOOGL"],
+  "enterprise": ["CRM", "ORCL", "NOW", "TEAM"]
+}
