@@ -12,3 +12,6 @@ tickers = ["AMZN", "GOOGL"]
 
 [enterprise]
 tickers = ["CRM", "ORCL", "NOW", "TEAM"]
+
+[etf]
+tickers = ["VOO", "QQQ", "VXUS"]
