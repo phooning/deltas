@@ -15,7 +15,6 @@ For 1-week to 1-month trades, we are essentially trading Gamma and Vega.
 
 - Moving Average Crossover
 
-
 ## Data Ingestion
 
 Requirements:

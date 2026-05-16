@@ -1,26 +1,28 @@
-import os
-from typing import Dict, List
+"""Panel server entrypoint for the local Deltas trading desk MVP shell."""
 
-import numpy as np
-import pandas as pd
-import vectorbt as vbt
-import yfinance as yf
+import panel as pn
 
-from utils.fs import get_configs
-
-massive_api_key = os.environ["MASSIVE_API"]
+from trading_desk.app import create_app
 
 
-def main():
-    configs = get_configs()
-    print(configs["tickers.toml"])
-    print(massive_api_key)
+pn.extension(
+    "plotly",
+    "tabulator",
+    "vega",
+    sizing_mode="stretch_width",
+    notifications=True,
+)
 
-    print()
-    data = vbt.YFData.download("BTC-USD")
-    price = data.get("Close")
-    print(price)
+app = create_app()
+app.servable()
 
 
 if __name__ == "__main__":
-    main()
+    pn.serve(
+        app,
+        address="localhost",
+        port=5006,
+        show=False,
+        title="Deltas Trading Desk",
+        websocket_origin=["localhost:5006", "127.0.0.1:5006"],
+    )
